@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "rainbow_trims",
+  "name": "RainbowTrims",
+  "version": "1.1-0",
+  "description": "Add a cool RGB effect to your ArmorTrims",
+  "authors": ["_xxNiklasxx_08"],
+  "license": "AGPL",
+  "icon": "assets/rainbowtrims/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["net.nutils.rainbowtrims.RainbowTrimsMod"],
+    "modmenu": ["net.nutils.rainbowtrims.RainbowTrimsMod"]
+  },
+  "mixins": ["rainbowtrims.mixin.json"],
+  "depends": {
+    "fabricloader": ">=0.15.7",
+    "fabric-api": ">=0.96.11+1.20.4",
+    "minecraft": ">=1.20",
+    "java": ">=17",
+    "modmenu": ">=9.0.0",
+    "cloth-config": ">=13.0.121"
+  }
+}
