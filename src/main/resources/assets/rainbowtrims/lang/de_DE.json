@@ -1,0 +1,6 @@
+{
+  "text.autoconfig.rainbow_trims.title": "Rainbow Trims",
+  "text.autoconfig.rainbow_trims.option.isEnabled": "Sollen die Rainbow Trims aktiviert sein oder nicht",
+  "text.autoconfig.rainbow_trims.option.hideTrims": "Sollen alle Armor Trims versteckt werden oder nicht",
+  "text.autoconfig.rainbow_trims.option.speed": "Wie schnell soll die Animation der Rainbow Trims sein"
+}
