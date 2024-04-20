@@ -5,7 +5,7 @@ on:
     branches:
       - 'main'
     paths:
-      - '${{ github.workspace }}/src/main/resources/assets/rainbowtrims/lang/**'
+      - 'src/main/resources/assets/rainbowtrims/lang/en_US.json'
   workflow_dispatch:
 
 jobs:
