@@ -2,5 +2,6 @@
   "text.autoconfig.rainbow_trims.title": "Rainbow Trims",
   "text.autoconfig.rainbow_trims.option.isEnabled": "Should Rainbow Trims be enabled or not",
   "text.autoconfig.rainbow_trims.option.hideTrims": "Should all Trims be hidden or not",
-  "text.autoconfig.rainbow_trims.option.speed": "How fast the animation should be displayed"
+  "text.autoconfig.rainbow_trims.option.speed": "How fast the animation should be displayed",
+  "text": "Please ignore this!"
 }
