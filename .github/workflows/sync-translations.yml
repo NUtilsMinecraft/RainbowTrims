@@ -21,7 +21,7 @@ jobs:
         with:
           source_file: '${{ github.workspace }}/src/main/resources/assets/rainbowtrims/lang/en_US.json'
           destination_repo: 'NUtilsMinecraft/Translations'
-          destination_folder: 'rainbow-trims'
+          destination_folder: 'rainbowtrims/lang/'
           destination_branch: 'main'
           commit_message: 'Sync Translations'
           user_email: '${{ secrets.EMAIL }}'
