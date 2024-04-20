@@ -1,0 +1,21 @@
+name: 'Sync Translations'
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: 'Checkout code'
+        uses: 'actions/checkout@v4'
+      - name: 'Sync Translations'
+        uses: 'dmnemec/copy_file_to_another_repo_action@main'
+        env:
+          API_TOKEN_GITHUB: '${{ secrets.ACCESS_TOKEN }}'
+        with:
+          source_file: '${{ github.workspace }}/src/main/resources/assets/rainbowtrims/lang/en_US.json'
+          destination_repo: 'NUtilsMinecraft/Translations'
+          destination_folder: 'rainbow-trims'
+          destination_branch: 'main'
+          commit_message: 'Sync Translations'
