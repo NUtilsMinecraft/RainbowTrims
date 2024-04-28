@@ -7,7 +7,7 @@ import me.shedaniel.autoconfig.annotation.Config;
 public class RainbowTrimsConfig implements ConfigData {
 
     public boolean isEnabled = true;
-    public boolean hideTrims = false;
+    /*public boolean hideTrims = false;*/
     public long speed = 7000;
 
 }
