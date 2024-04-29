@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "rainbow_trims",
   "name": "RainbowTrims",
-  "version": "1.2-0",
+  "version": "1.2-1",
   "description": "Add a cool RGB effect to your ArmorTrims",
   "authors": ["_xxNiklasxx_08"],
   "license": "AGPL",
