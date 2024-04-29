@@ -33,23 +33,26 @@ public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extend
     @Inject(method = "renderTrim", at = @At("HEAD"), cancellable = true)
     public void renderInjection(RegistryEntry<ArmorMaterial> material, MatrixStack stack, VertexConsumerProvider provider, int light, ArmorTrim trim, A model, boolean leggings, @NotNull CallbackInfo info) {
         info.cancel();
-        if(config.isEnabled) {
-            var sprite = this.armorTrimsAtlas.getSprite(leggings ? trim.getLeggingsModelId(material) : trim.getGenericModelId(material));
-            var consumer = sprite.getTextureSpecificVertexConsumer(ItemRenderer.getDirectItemGlintConsumer(provider, TexturedRenderLayers.getArmorTrims(trim.getPattern().value().decal()),
-                    true, leggings));
+        var sprite = armorTrimsAtlas.getSprite(leggings ? trim.getLeggingsModelId(material) : trim.getGenericModelId(material));
+        var alpha = config.hideTrims ? 0F : 1F;
+        if(config.showAnimation) {
+            var consumer = sprite.getTextureSpecificVertexConsumer(
+                    ItemRenderer.getDirectItemGlintConsumer(provider, TexturedRenderLayers.getArmorTrims(trim.getPattern().value().decal()), true, leggings));
             var effect = getEffectColor();
-            model.render(stack, consumer, light, OverlayTexture.DEFAULT_UV, ((float) (effect >> 16 & 255) / 255F), ((float) (effect >> 8 & 255) / 255F), ((float) (effect & 255) / 255F),
-                    config.hideTrims ? 0F : 1F);
-        } else {
-            var sprite = this.armorTrimsAtlas.getSprite(leggings ? trim.getLeggingsModelId(material) : trim.getGenericModelId(material));
+            model.render(stack, consumer, light, OverlayTexture.DEFAULT_UV,
+                    ((float) (effect >> 16 & 255) / 255F), ((float) (effect >> 8 & 255) / 255F), ((float) (effect & 255) / 255F), alpha);
+        } else if(config.useCustomColor) {
             var consumer = sprite.getTextureSpecificVertexConsumer(provider.getBuffer(TexturedRenderLayers.getArmorTrims(trim.getPattern().value().decal())));
-            model.render(stack, consumer, light, OverlayTexture.DEFAULT_UV, 1F, 1F, 1F, config.hideTrims ? 0F : 1F);
+            model.render(stack, consumer, light, OverlayTexture.DEFAULT_UV, config.customColorRed, config.customColorGreen, config.customColorBlue, alpha);
+        } else {
+            var consumer = sprite.getTextureSpecificVertexConsumer(provider.getBuffer(TexturedRenderLayers.getArmorTrims(trim.getPattern().value().decal())));
+            model.render(stack, consumer, light, OverlayTexture.DEFAULT_UV, 1F, 1F, 1F, alpha);
         }
     }
 
     @Unique
     private static int getEffectColor() {
-        return Color.HSBtoRGB((float) (System.currentTimeMillis() % 7000) / config.speed, 1F, 1F);
+        return Color.HSBtoRGB((float) (System.currentTimeMillis() % 7000) / config.animationSpeed, 1F, 1F);
     }
 
 }
