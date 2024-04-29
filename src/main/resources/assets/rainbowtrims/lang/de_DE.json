@@ -1,6 +1,10 @@
 {
   "text.autoconfig.rainbow_trims.title": "Rainbow Trims",
-  "text.autoconfig.rainbow_trims.option.isEnabled": "Sollen die Rainbow Trims aktiviert sein oder nicht",
+  "text.autoconfig.rainbow_trims.option.showAnimation": "Soll die Animation abgespielt werden",
+  "text.autoconfig.rainbow_trims.option.animationSpeed": "Wie schnell die Animation abgespielt werden soll",
   "text.autoconfig.rainbow_trims.option.hideTrims": "Sollen alle Armor Trims versteckt werden oder nicht",
-  "text.autoconfig.rainbow_trims.option.speed": "Wie schnell soll die Animation der Rainbow Trims sein"
+  "text.autoconfig.rainbow_trims.option.useCustomColor": "Soll eine eigene Farbe gerendert werden",
+  "text.autoconfig.rainbow_trims.option.customColorRed": "Der Rot-Wert für die eigene Farbe",
+  "text.autoconfig.rainbow_trims.option.customColorGreen": "Der Grün-Wert für die eigene Farbe",
+  "text.autoconfig.rainbow_trims.option.customColorBlue": "Der Blau-Wert für die eigene Farbe"
 }
