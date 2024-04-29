@@ -1,6 +1,10 @@
 {
   "text.autoconfig.rainbow_trims.title": "Rainbow Trims",
-  "text.autoconfig.rainbow_trims.option.isEnabled": "Should Rainbow Trims be enabled or not",
+  "text.autoconfig.rainbow_trims.option.showAnimation": "Should the animation be played",
+  "text.autoconfig.rainbow_trims.option.animationSpeed": "How fast the animation should be displayed",
   "text.autoconfig.rainbow_trims.option.hideTrims": "Should all Trims be hidden or not",
-  "text.autoconfig.rainbow_trims.option.speed": "How fast the animation should be displayed"
+  "text.autoconfig.rainbow_trims.option.useCustomColor": "Should a custom color be rendered",
+  "text.autoconfig.rainbow_trims.option.customColorRed": "The red value for the custom color",
+  "text.autoconfig.rainbow_trims.option.customColorGreen": "The green value for the custom color",
+  "text.autoconfig.rainbow_trims.option.customColorBlue": "The blue value for the custom color"
 }
