@@ -39,11 +39,11 @@ public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extend
                     true, leggings));
             var effect = getEffectColor();
             model.render(stack, consumer, light, OverlayTexture.DEFAULT_UV, ((float) (effect >> 16 & 255) / 255F), ((float) (effect >> 8 & 255) / 255F), ((float) (effect & 255) / 255F),
-                    /*config.hideTrims ? 0F : */1F);
+                    config.hideTrims ? 0F : 1F);
         } else {
             var sprite = this.armorTrimsAtlas.getSprite(leggings ? trim.getLeggingsModelId(material) : trim.getGenericModelId(material));
             var consumer = sprite.getTextureSpecificVertexConsumer(provider.getBuffer(TexturedRenderLayers.getArmorTrims(trim.getPattern().value().decal())));
-            model.render(stack, consumer, light, OverlayTexture.DEFAULT_UV, 1F, 1F, 1F, 1F);
+            model.render(stack, consumer, light, OverlayTexture.DEFAULT_UV, 1F, 1F, 1F, config.hideTrims ? 0F : 1F);
         }
     }
 
