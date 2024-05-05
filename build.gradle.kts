@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "net.nutils"
-version = "1.2-1"
+version = "1.3-0"
 
 repositories {
     mavenCentral()
@@ -13,10 +13,10 @@ repositories {
 }
 
 dependencies {
-    minecraft("com.mojang", "minecraft", "1.20.5")
-    mappings("net.fabricmc:yarn:1.20.5+build.1:v2")
+    minecraft("com.mojang", "minecraft", "1.20.6")
+    mappings("net.fabricmc", "yarn", "1.20.6+build.1")
     modImplementation("net.fabricmc", "fabric-loader", "0.15.10")
-    modImplementation("net.fabricmc.fabric-api", "fabric-api", "0.97.6+1.20.5")
+    modImplementation("net.fabricmc.fabric-api", "fabric-api", "0.97.8+1.20.6")
     modApi("com.terraformersmc", "modmenu", "10.0.0-beta.1")
     modApi("me.shedaniel.cloth", "cloth-config-fabric", "14.0.126") {
         exclude("net.fabricmc.fabric-api")
