@@ -37,15 +37,15 @@ public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extend
         var alpha = config.hideTrims ? 0F : 1F;
         if(config.showAnimation) {
             var consumer = sprite.getTextureSpecificVertexConsumer(
-                    ItemRenderer.getDirectItemGlintConsumer(provider, TexturedRenderLayers.getArmorTrims(trim.getPattern().comp_349().comp_1905()), true, leggings));
+                    ItemRenderer.getDirectItemGlintConsumer(provider, TexturedRenderLayers.getArmorTrims(trim.getPattern().value().decal()), true, leggings));
             var effect = getEffectColor();
             model.render(stack, consumer, light, OverlayTexture.DEFAULT_UV,
                     ((float) (effect >> 16 & 255) / 255F), ((float) (effect >> 8 & 255) / 255F), ((float) (effect & 255) / 255F), alpha);
         } else if(config.useCustomColor) {
-            var consumer = sprite.getTextureSpecificVertexConsumer(provider.getBuffer(TexturedRenderLayers.getArmorTrims(trim.getPattern().comp_349().comp_1905())));
+            var consumer = sprite.getTextureSpecificVertexConsumer(provider.getBuffer(TexturedRenderLayers.getArmorTrims(trim.getPattern().value().decal())));
             model.render(stack, consumer, light, OverlayTexture.DEFAULT_UV, config.customColorRed, config.customColorGreen, config.customColorBlue, alpha);
         } else {
-            var consumer = sprite.getTextureSpecificVertexConsumer(provider.getBuffer(TexturedRenderLayers.getArmorTrims(trim.getPattern().comp_349().comp_1905())));
+            var consumer = sprite.getTextureSpecificVertexConsumer(provider.getBuffer(TexturedRenderLayers.getArmorTrims(trim.getPattern().value().decal())));
             model.render(stack, consumer, light, OverlayTexture.DEFAULT_UV, 1F, 1F, 1F, alpha);
         }
     }
