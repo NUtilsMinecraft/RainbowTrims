@@ -1,6 +1,6 @@
 # Rainbow Trims
 
-[Download on Modrinth](modrinth.com/mod/rainbow-trims)
+[Download on Modrinth](https://modrinth.com/mod/rainbow-trims)
 
 ### Each Armor Trim has a cool RGB Effect as standard
 
