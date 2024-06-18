@@ -42,14 +42,13 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
         if(config.showAnimation) {
             var consumer = sprite.wrap(ItemRenderer.getFoilBufferDirect(source, Sheets.armorTrimsSheet(trim.pattern().value().decal()), true, leggings));
             var effect = getEffectColor();
-            model.renderToBuffer(stack, consumer, light, OverlayTexture.NO_OVERLAY, ((float) (effect >> 16 & 255) / 255F), ((float) (effect >> 8 & 255) / 255F),
-                    ((float) (effect & 255) / 255F), alpha);
+            model.renderToBuffer(stack, consumer, light, OverlayTexture.NO_OVERLAY, ((effect >> 16 & 255) << 16) | ((effect >> 8 & 255) << 8) | (effect & 255) | ((int)(alpha * 255) << 24));
         } else if(config.useCustomColor) {
             var consumer = sprite.wrap(source.getBuffer(Sheets.armorTrimsSheet(trim.pattern().value().decal())));
-            model.renderToBuffer(stack, consumer, light, OverlayTexture.NO_OVERLAY, config.customColorRed, config.customColorGreen, config.customColorBlue, alpha);
+            model.renderToBuffer(stack, consumer, light, OverlayTexture.NO_OVERLAY, ((int) (alpha * 255) << 24) | ((int) (config.customColorRed * 255) << 16) | ((int) (config.customColorGreen * 255) << 8) | (int) (config.customColorBlue * 255));
         } else {
             var consumer = sprite.wrap(source.getBuffer(Sheets.armorTrimsSheet(trim.pattern().value().decal())));
-            model.renderToBuffer(stack, consumer, light, OverlayTexture.NO_OVERLAY, 1F, 1F, 1F, alpha);
+            model.renderToBuffer(stack, consumer, light, OverlayTexture.NO_OVERLAY, 0xffffffff);
         }
     }
 
