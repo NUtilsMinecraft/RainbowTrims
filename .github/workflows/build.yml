@@ -38,14 +38,11 @@ jobs:
       env:
         GRADLE_TOS_AGREE: yes
 
-    - name: List files for debugging
-      run: find . -type f -print
-
     - name: Upload Fabric Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: fabric-artifacts
-        path: fabric/build
+        path: build/lib
 
 #   release_github:
 #     name: "Release on GitHub"
