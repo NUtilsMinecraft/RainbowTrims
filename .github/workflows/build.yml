@@ -42,7 +42,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: fabric-artifacts
-        path: build/libs
+        path: build/libs/*.jar
 
 #   release_github:
 #     name: "Release on GitHub"
