@@ -34,9 +34,12 @@ jobs:
       run: chmod +x ./gradlew
 
     - name: Gradle Build
-      run: ./gradlew build --scan
+      run: ./gradlew build
       env:
         GRADLE_TOS_AGREE: yes
+
+    - name: List files for debugging
+      run: find . -type f -print
 
     - name: Upload Fabric Artifacts
       uses: actions/upload-artifact@v4
