@@ -37,6 +37,7 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
     @Inject(method = "renderTrim", at = @At("HEAD"), cancellable = true)
     public void renderInjection(Holder<ArmorMaterial> holder, PoseStack stack, MultiBufferSource source, int light, ArmorTrim trim, A model, boolean leggings, @NotNull CallbackInfo info) {
         info.cancel();
+        if(config.hideTrims) return;
         var sprite = armorTrimAtlas.getSprite(leggings ? trim.innerTexture(holder) : trim.outerTexture(holder));
         var alpha = config.hideTrims ? 0F : 1F;
         if(config.showAnimation) {

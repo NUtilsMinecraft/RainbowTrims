@@ -1,12 +1,11 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     kotlin("jvm") version("2.0.0")
     id("fabric-loom") version("1.6-SNAPSHOT")
+    id("com.modrinth.minotaur") version("2.8.7")
 }
 
 group = "net.nutils"
-version = "1.3-1"
+version = "1.4-0"
 
 repositories {
     mavenCentral()
@@ -25,12 +24,23 @@ dependencies {
     }
 }
 
+modrinth {
+    token.set(properties["modrinthToken"] as String)
+    projectId.set(properties["modrinthRainbowTrims"] as String)
+    versionNumber.set(version as String)
+    versionType.set("release")
+    versionName.set("Rainbow Trims ${version as String}")
+    uploadFile.set(tasks.remapJar)
+    loaders.add("fabric")
+    gameVersions.set(listOf("1.21"))
+    dependencies {
+        required.version("IHIHC1yO", "lJ1xXMce", "Yc8omJNb")
+    }
+}
+
 tasks {
     compileJava {
         options.release = 21
         options.encoding = Charsets.UTF_8.name()
-    }
-    compileKotlin {
-        compilerOptions.jvmTarget = JvmTarget.JVM_21
     }
 }
