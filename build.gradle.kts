@@ -15,12 +15,12 @@ repositories {
 }
 
 dependencies {
-    minecraft("com.mojang", "minecraft", "1.20.6")
+    minecraft("com.mojang", "minecraft", "1.21")
     mappings(loom.officialMojangMappings())
     modImplementation("net.fabricmc", "fabric-loader", "0.15.11")
-    modImplementation("net.fabricmc.fabric-api", "fabric-api", "0.99.0+1.20.6")
-    modApi("com.terraformersmc", "modmenu", "10.0.0-beta.1")
-    modApi("me.shedaniel.cloth", "cloth-config-fabric", "14.0.126") {
+    modImplementation("net.fabricmc.fabric-api", "fabric-api", "0.100.2+1.21")
+    modApi("com.terraformersmc", "modmenu", "11.0.0")
+    modApi("me.shedaniel.cloth", "cloth-config-fabric", "15.0.127") {
         exclude("net.fabricmc.fabric-api")
     }
 }
