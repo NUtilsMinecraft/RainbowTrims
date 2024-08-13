@@ -1,11 +1,11 @@
 plugins {
     kotlin("jvm") version("2.0.0")
-    id("fabric-loom") version("1.6-SNAPSHOT")
+    id("fabric-loom") version("1.7-SNAPSHOT")
     id("com.modrinth.minotaur") version("2.8.7")
 }
 
 group = "net.nutils"
-version = "1.4-0"
+version = "1.4-1"
 
 repositories {
     mavenCentral()
@@ -14,12 +14,11 @@ repositories {
 }
 
 dependencies {
-    minecraft("com.mojang", "minecraft", "1.21")
+    minecraft("com.mojang", "minecraft", "1.21.1")
     mappings(loom.officialMojangMappings())
     modImplementation("net.fabricmc", "fabric-loader", "0.15.11")
-    modImplementation("net.fabricmc.fabric-api", "fabric-api", "0.100.2+1.21")
-    modApi("com.terraformersmc", "modmenu", "11.0.0")
-    modApi("me.shedaniel.cloth", "cloth-config-fabric", "15.0.127") {
+    modApi("com.terraformersmc", "modmenu", "11.0.1")
+    modApi("me.shedaniel.cloth", "cloth-config-fabric", "15.0.130") {
         exclude("net.fabricmc.fabric-api")
     }
 }
@@ -32,9 +31,9 @@ modrinth {
     versionName.set("Rainbow Trims ${version as String}")
     uploadFile.set(tasks.remapJar)
     loaders.add("fabric")
-    gameVersions.set(listOf("1.21"))
+    gameVersions.set(listOf("1.21.1"))
     dependencies {
-        required.version("IHIHC1yO", "lJ1xXMce", "Yc8omJNb")
+        required.version("xhN1IvHi", "7jtvrmVP")
     }
 }
 
