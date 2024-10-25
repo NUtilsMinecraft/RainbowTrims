@@ -10,8 +10,8 @@ public class RainbowTrimsConfig implements ConfigData {
     public long animationSpeed = 7000;
     public boolean hideTrims = false;
     public boolean useCustomColor = false;
-    public float customColorRed = 1F;
-    public float customColorGreen = 1F;
-    public float customColorBlue = 1F;
+    public int customColorRed = 255;
+    public int customColorGreen = 255;
+    public int customColorBlue = 255;
 
 }

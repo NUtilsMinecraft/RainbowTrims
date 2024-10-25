@@ -1,11 +1,12 @@
 {
-  "required": true,
-  "minVersion": "0.8",
-  "package": "net.nutils.rainbowtrims.mixin",
-  "client": [
-    "HumanoidArmorLayerMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  }
+    "required": true,
+    "minVersion": "0.8",
+    "compatibilityLevel": "JAVA_21",
+    "package": "net.nutils.rainbowtrims.mixin",
+    "client": [
+        "EquipmentRendererMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
 }

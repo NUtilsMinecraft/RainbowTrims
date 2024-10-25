@@ -1,23 +1,24 @@
 {
-  "schemaVersion": 1,
-  "id": "rainbow_trims",
-  "name": "RainbowTrims",
-  "version": "1.4-1",
-  "description": "Add a cool RGB effect to your ArmorTrims",
-  "authors": ["_xxNiklasxx_08"],
-  "license": "AGPL",
-  "icon": "assets/rainbowtrims/icon.png",
-  "environment": "client",
-  "entrypoints": {
-    "client": ["net.nutils.rainbowtrims.RainbowTrimsMod"],
-    "modmenu": ["net.nutils.rainbowtrims.RainbowTrimsMod"]
-  },
-  "mixins": ["rainbowtrims.mixin.json"],
-  "depends": {
-    "fabricloader": ">=0.15.11",
-    "minecraft": ">=1.21",
-    "java": ">=21",
-    "modmenu": ">=11.0.1",
-    "cloth-config": ">=15.0.130"
-  }
+    "schemaVersion": 1,
+    "id": "rainbow_trims",
+    "name": "RainbowTrims",
+    "version": "1.5-0",
+    "description": "Add a cool RGB effect to your ArmorTrims",
+    "authors": ["_xxNiklasxx_08"],
+    "license": "AGPL",
+    "icon": "assets/rainbowtrims/icon.png",
+    "environment": "client",
+    "entrypoints": {
+        "client": ["net.nutils.rainbowtrims.RainbowTrimsMod"],
+        "modmenu": ["net.nutils.rainbowtrims.RainbowTrimsMod"]
+    },
+    "mixins": ["rainbowtrims.mixin.json"],
+    "accessWidener": "rainbowtrims.accesswidener",
+    "depends": {
+        "minecraft": "1.21.2",
+        "java": ">=21",
+        "fabricloader": ">=0.16.7",
+        "modmenu": ">=12.0.0-beta.1",
+        "cloth-config": ">=16.0.141"
+    }
 }
