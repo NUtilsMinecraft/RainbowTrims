@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "net.nutils"
-version = "1.5-0"
+version = "1.5-1"
 
 repositories {
     mavenCentral()
@@ -14,8 +14,8 @@ repositories {
 }
 
 dependencies {
-    minecraft("com.mojang", "minecraft", "1.21.2")
-    mappings("net.fabricmc:yarn:1.21.2+build.1")
+    minecraft("com.mojang", "minecraft", "1.21.3")
+    mappings("net.fabricmc:yarn:1.21.3+build.2")
     modImplementation("net.fabricmc", "fabric-loader", "0.16.7")
     modApi("com.terraformersmc", "modmenu", "12.0.0-beta.1")
     modApi("me.shedaniel.cloth", "cloth-config-fabric", "16.0.141") {
@@ -35,8 +35,8 @@ modrinth {
     versionName.set("Rainbow Trims ${version as String}")
     uploadFile.set(tasks.remapJar)
     loaders.add("fabric")
-    gameVersions.set(listOf("1.21.2"))
-    changelog.set("Update to 1.21.2")
+    gameVersions.set(listOf("1.21.3"))
+    changelog.set("Update to 1.21.3")
     dependencies {
         required.version("PcJvQYqu", "JbVSQUVw")
     }
