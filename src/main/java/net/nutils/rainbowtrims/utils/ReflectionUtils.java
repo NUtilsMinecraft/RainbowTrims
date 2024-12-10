@@ -1,9 +1,10 @@
 package net.nutils.rainbowtrims.utils;
 
+import net.minecraft.client.render.entity.equipment.EquipmentModel;
 import net.minecraft.client.render.entity.equipment.EquipmentRenderer;
-import net.minecraft.item.equipment.EquipmentModel;
+import net.minecraft.item.equipment.EquipmentAsset;
 import net.minecraft.item.equipment.trim.ArmorTrim;
-import net.minecraft.util.Identifier;
+import net.minecraft.registry.RegistryKey;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Constructor;
@@ -21,10 +22,10 @@ public class ReflectionUtils {
     }
 
     @SuppressWarnings("unchecked")
-    public static EquipmentRenderer.@NotNull TrimSpriteKey createTrimSpriteKey(ArmorTrim trim, EquipmentModel.LayerType type, Identifier identifier) throws ClassNotFoundException,
+    public static EquipmentRenderer.@NotNull TrimSpriteKey createTrimSpriteKey(ArmorTrim trim, EquipmentModel.LayerType type, RegistryKey<EquipmentAsset> identifier) throws ClassNotFoundException,
             NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         var constructor = (Constructor<EquipmentRenderer.TrimSpriteKey>) Class.forName("net.minecraft.client.render.entity.equipment.EquipmentRenderer$TrimSpriteKey")
-                .getDeclaredConstructor(ArmorTrim.class, EquipmentModel.LayerType.class, Identifier.class);
+                .getDeclaredConstructor(ArmorTrim.class, EquipmentModel.LayerType.class, RegistryKey.class);
         constructor.setAccessible(true);
         return constructor.newInstance(trim, type, identifier);
     }

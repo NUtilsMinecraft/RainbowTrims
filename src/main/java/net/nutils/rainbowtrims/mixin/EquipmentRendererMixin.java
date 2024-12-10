@@ -6,6 +6,7 @@ import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.entity.equipment.EquipmentModel;
 import net.minecraft.client.render.entity.equipment.EquipmentModelLoader;
 import net.minecraft.client.render.entity.equipment.EquipmentRenderer;
 import net.minecraft.client.render.item.ItemRenderer;
@@ -14,12 +15,14 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.DyedColorComponent;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.equipment.EquipmentModel;
+import net.minecraft.item.equipment.EquipmentAsset;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import net.nutils.rainbowtrims.RainbowTrimsConfig;
 import net.nutils.rainbowtrims.utils.ReflectionUtils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -41,20 +44,19 @@ public abstract class EquipmentRendererMixin {
 
     @Unique private static final RainbowTrimsConfig config = AutoConfig.getConfigHolder(RainbowTrimsConfig.class).getConfig();
 
-    @Inject(method = "render(Lnet/minecraft/item/equipment/EquipmentModel$LayerType;Lnet/minecraft/util/Identifier;Lnet/minecraft/client/model/Model;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/util/Identifier;)V", at = @At("HEAD"), cancellable = true)
-    public void render(EquipmentModel.LayerType type, Identifier first, Model model, ItemStack item, MatrixStack stack, VertexConsumerProvider provider, int light,
-                       Identifier second, @NotNull CallbackInfo info) {
+    @Inject(method = "render(Lnet/minecraft/client/render/entity/equipment/EquipmentModel$LayerType;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/client/model/Model;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/util/Identifier;)V", at = @At("HEAD"), cancellable = true)
+    public void render(EquipmentModel.LayerType layer, RegistryKey<EquipmentAsset> registry, Model model, ItemStack item, MatrixStack stack, VertexConsumerProvider provider, int light, @Nullable Identifier identifier, @NotNull CallbackInfo info) {
         info.cancel();
-        var list = this.equipmentModelLoader.get(first).getLayers(type);
+        var list = this.equipmentModelLoader.get(registry).getLayers(layer);
         if(list.isEmpty()) return;
         var color = item.isIn(ItemTags.DYEABLE) ? DyedColorComponent.getColor(item, 0) : 0;
         var glint = item.hasGlint();
-        for(EquipmentModel.Layer layer : list) {
+        for(EquipmentModel.Layer layerEntry : list) {
             try {
-                var dye = getDyeColor(layer, color);
+                var dye = getDyeColor(layerEntry, color);
                 if(dye != 0) {
-                    var identifier = layer.comp_3173() && second != null ? second : this.layerTextures.apply(ReflectionUtils.createLayerTextureKey(type, layer));
-                    var consumer = ItemRenderer.getArmorGlintConsumer(provider, RenderLayer.getArmorCutoutNoCull(identifier), glint);
+                    var textureKey = layerEntry.comp_3173() && identifier != null ? identifier : this.layerTextures.apply(ReflectionUtils.createLayerTextureKey(layer, layerEntry));
+                    var consumer = ItemRenderer.getArmorGlintConsumer(provider, RenderLayer.getArmorCutoutNoCull(textureKey), glint);
                     model.render(stack, consumer, light, OverlayTexture.DEFAULT_UV, dye);
                     glint = false;
                 }
@@ -65,7 +67,7 @@ public abstract class EquipmentRendererMixin {
         var trim = item.get(DataComponentTypes.TRIM);
         if(trim != null) {
             try {
-                var sprite = this.trimSprites.apply(ReflectionUtils.createTrimSpriteKey(trim, type, first));
+                var sprite = this.trimSprites.apply(ReflectionUtils.createTrimSpriteKey(trim, layer, registry));
                 var consumer = sprite.getTextureSpecificVertexConsumer(provider.getBuffer(TexturedRenderLayers.getArmorTrims(trim.pattern().comp_349().comp_1905())));
                 var alpha = config.hideTrims ? 0F : 1F;
                 if(config.hideTrims) return;
