@@ -1,10 +1,10 @@
 package net.nutils.rainbowtrims.utils;
 
-import net.minecraft.client.render.entity.equipment.EquipmentModel;
-import net.minecraft.client.render.entity.equipment.EquipmentRenderer;
-import net.minecraft.item.equipment.EquipmentAsset;
-import net.minecraft.item.equipment.trim.ArmorTrim;
-import net.minecraft.registry.RegistryKey;
+import net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer;
+import net.minecraft.client.resources.model.EquipmentClientInfo;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.equipment.EquipmentAsset;
+import net.minecraft.world.item.equipment.trim.ArmorTrim;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Constructor;
@@ -12,22 +12,20 @@ import java.lang.reflect.InvocationTargetException;
 
 public class ReflectionUtils {
 
-    @SuppressWarnings("unchecked")
-    public static EquipmentRenderer.@NotNull LayerTextureKey createLayerTextureKey(EquipmentModel.LayerType type, EquipmentModel.Layer layer) throws ClassNotFoundException,
-            NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        var constructor = (Constructor<EquipmentRenderer.LayerTextureKey>) Class.forName("net.minecraft.client.render.entity.equipment.EquipmentRenderer$LayerTextureKey")
-                .getDeclaredConstructor(EquipmentModel.LayerType.class, EquipmentModel.Layer.class);
+    public static EquipmentLayerRenderer.@NotNull LayerTextureKey createLayerTextureKey(EquipmentClientInfo.LayerType type, EquipmentClientInfo.Layer layer)
+        throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Constructor<?> constructor = Class.forName("net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer$LayerTextureKey")
+            .getDeclaredConstructor(EquipmentClientInfo.LayerType.class, EquipmentClientInfo.Layer.class);
         constructor.setAccessible(true);
-        return constructor.newInstance(type, layer);
+        return (EquipmentLayerRenderer.LayerTextureKey) constructor.newInstance(type, layer);
     }
 
-    @SuppressWarnings("unchecked")
-    public static EquipmentRenderer.@NotNull TrimSpriteKey createTrimSpriteKey(ArmorTrim trim, EquipmentModel.LayerType type, RegistryKey<EquipmentAsset> identifier) throws ClassNotFoundException,
-            NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        var constructor = (Constructor<EquipmentRenderer.TrimSpriteKey>) Class.forName("net.minecraft.client.render.entity.equipment.EquipmentRenderer$TrimSpriteKey")
-                .getDeclaredConstructor(ArmorTrim.class, EquipmentModel.LayerType.class, RegistryKey.class);
+    public static EquipmentLayerRenderer.@NotNull TrimSpriteKey createTrimSpriteKey(ArmorTrim trim, EquipmentClientInfo.LayerType type, ResourceKey<EquipmentAsset> resourceKey)
+        throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Constructor<?> constructor = Class.forName("net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer$TrimSpriteKey")
+            .getDeclaredConstructor(ArmorTrim.class, EquipmentClientInfo.LayerType.class, ResourceKey.class);
         constructor.setAccessible(true);
-        return constructor.newInstance(trim, type, identifier);
+        return (EquipmentLayerRenderer.TrimSpriteKey) constructor.newInstance(trim, type, resourceKey);
     }
 
 }
