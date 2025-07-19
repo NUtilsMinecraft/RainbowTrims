@@ -1,9 +1,6 @@
 rootProject.name = "RainbowTrims"
 
-pluginManagement {
-    repositories {
-        mavenCentral()
+pluginManagement.repositories {
         gradlePluginPortal()
         maven(uri("https://maven.fabricmc.net/"))
-    }
 }

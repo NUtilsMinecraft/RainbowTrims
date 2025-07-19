@@ -1,10 +1,10 @@
 plugins {
-    kotlin("jvm") version("2.1.20")
-    id("fabric-loom") version("1.10-SNAPSHOT")
+    kotlin("jvm") version("2.2.0")
+    id("fabric-loom") version("1.11-SNAPSHOT")
 }
 
 group = "net.nutils"
-version = "1.7-0"
+version = "1.8-0"
 
 repositories {
     mavenCentral()
@@ -13,13 +13,13 @@ repositories {
 }
 
 dependencies {
-    minecraft("com.mojang", "minecraft", "1.21.5")
+    minecraft("com.mojang", "minecraft", "1.21.7")
     mappings(loom.officialMojangMappings())
 
-    modImplementation("net.fabricmc", "fabric-loader", "0.16.13")
+    modImplementation("net.fabricmc", "fabric-loader", "0.16.14")
 
-    modApi("com.terraformersmc", "modmenu", "14.0.0-rc.2")
-    modApi("me.shedaniel.cloth", "cloth-config-fabric", "18.0.145") {
+    modApi("com.terraformersmc", "modmenu", "15.0.0-beta.3")
+    modApi("me.shedaniel.cloth", "cloth-config-fabric", "19.0.147") {
         exclude("net.fabricmc.fabric-api")
     }
 }
