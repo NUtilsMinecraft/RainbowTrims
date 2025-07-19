@@ -65,6 +65,7 @@ public abstract class EquipmentLayerRendererMixin {
                     glint = false;
                 }
             } catch(Exception exception) {
+                System.out.println(exception.getMessage());
                 exception.printStackTrace();
             }
         }
@@ -91,6 +92,7 @@ public abstract class EquipmentLayerRendererMixin {
                 }
                 model.renderToBuffer(pose, consumer, light, OverlayTexture.NO_OVERLAY);
             } catch(Exception exception) {
+                System.out.println(exception.getMessage());
                 exception.printStackTrace();
             }
         }
